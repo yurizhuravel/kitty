@@ -11,14 +11,14 @@ object kitty extends IOApp.Simple {
 
   private val helloWorldService = HttpRoutes.of[IO] {
     case GET -> Root / "hello" / name =>
-      logger.info(s"Received request for /hello/$name") *>
+      LOG.info(s"Received request for /hello/$name") *>
       Ok(s"Hello, $name")
   }
 
   private val httpApp = Router("/" -> helloWorldService).orNotFound
 
   val run: IO[Unit] = for {
-    _ <- logger.info("Starting server...")
+    _ <- LOG.info("Starting server...")
     _ <- BlazeServerBuilder[IO]
       .bindHttp(8080, "0.0.0.0")
       .withHttpApp(httpApp)

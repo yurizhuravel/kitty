@@ -15,8 +15,6 @@ lazy val root = project
       "org.http4s" %% "http4s-dsl" % "0.23.27",
       "io.circe" %% "circe-generic" % "0.14.10",
       "io.circe" %% "circe-parser" % "0.14.10",
-      "org.typelevel" %% "log4cats-core" % "2.6.0",
-      "org.typelevel" %% "log4cats-slf4j" % "2.6.0",
       "ch.qos.logback" % "logback-classic" % "1.5.6",
       "org.scalameta" %% "munit" % "1.0.2" % Test
     ),
