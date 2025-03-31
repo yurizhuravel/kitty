@@ -1,29 +1,29 @@
 package kitty
 
-import cats.effect.{IO, IOApp}
+import cats.effect.{ExitCode, IO, IOApp}
+import com.comcast.ip4s.*
 import org.http4s.HttpRoutes
-import org.http4s.dsl.io._
-import org.http4s.implicits._
-import org.http4s.server.blaze.BlazeServerBuilder
+import org.http4s.dsl.io.*
+import org.http4s.implicits.*
 import org.http4s.server.Router
-
-object kitty extends IOApp.Simple {
+import org.http4s.ember.server._
+object kitty extends IOApp {
 
   private val helloWorldService = HttpRoutes.of[IO] {
     case GET -> Root / "hello" / name =>
       LOG.info(s"Received request for /hello/$name") *>
-      Ok(s"Hello, $name")
+        Ok(s"Hello, $name")
   }
 
   private val httpApp = Router("/" -> helloWorldService).orNotFound
 
-  val run: IO[Unit] = for {
+  def run(args: List[String]): IO[ExitCode] = for {
     _ <- LOG.info("Starting server...")
-    _ <- BlazeServerBuilder[IO]
-      .bindHttp(8080, "0.0.0.0")
+    _ <- EmberServerBuilder.default[IO]
+      .withHost(ipv4"0.0.0.0")
+      .withPort(port"8080")
       .withHttpApp(httpApp)
-      .serve
-      .compile
-      .drain
-  } yield ()
+      .build
+      .useForever
+  } yield ExitCode.Success
 }
