@@ -9,7 +9,7 @@ lazy val root = project
     scalaVersion := scala3Version,
 
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-core" % "2.12.0",
+      "org.typelevel" %% "cats-core" % "2.13.0",
       "org.http4s" %% "http4s-ember-server" % "0.23.17",
       "org.http4s" %% "http4s-circe" % "0.23.27",
       "org.http4s" %% "http4s-dsl" % "0.23.27",
