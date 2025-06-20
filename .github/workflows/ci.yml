@@ -39,9 +39,6 @@ jobs:
       run: |
         sbt test
       # sbt test stage
-      
-    - uses: sbt/setup-sbt@v1
-    - uses: scalacenter/sbt-dependency-submission@v2
 
 #    - name: Set up Docker Buildx
 #      uses: docker/setup-buildx-action@v3
