@@ -10,7 +10,7 @@ lazy val root = project
 
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-core" % "2.13.0",
-      "org.http4s" %% "http4s-ember-server" % "0.23.17",
+      "org.http4s" %% "http4s-ember-server" % "0.23.34",
       "org.http4s" %% "http4s-circe" % "0.23.30",
       "org.http4s" %% "http4s-dsl" % "0.23.30",
       "io.circe" %% "circe-generic" % "0.14.10",
